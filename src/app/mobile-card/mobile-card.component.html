@@ -1,0 +1,62 @@
+
+
+<div class="row">
+    <div class="col-12">
+         <div class="card p-2 mb-2">
+         <div class="card-body p-2" 
+       
+         [ngClass]="{
+          notAvailable : !getMobileObj.isAvailable
+         }"
+         >
+          
+            <div class="row ">
+                <div class=" col-sm-12 col-md-3">
+                <div class="img-container" *ngIf='getMobileObj.image ; else placeholderImg '>
+                    <img class="img-fluid" [src]="getMobileObj.image" [alt]="getMobileObj.name">
+                </div>
+              <ng-template #placeholderImg >
+              <img class="placeholderImg"  src="https://media.istockphoto.com/id/2173059563/vector/coming-soon-image-on-white-background-no-photo-available.jpg?s=612x612&w=0&k=20&c=v0a_B58wPFNDPULSiw_BmPyhSNCyrP_d17i2BPPyDTk=" alt="">
+              </ng-template>
+              </div>
+             <div class=" col-sm-12 col-md-7 mt-3">
+                <h1 class="text-dark mb-0 ">{{getMobileObj.name}}
+                   <span [ngClass]="{
+                    ' badge badge-success text-white p-2' : getMobileObj.rating >= 4,
+                    'badge badge-warning text-white p-2' :getMobileObj.rating >= 3 && getMobileObj.rating <4,
+                    'badge badge-danger text-white p-2' :getMobileObj.rating <3
+
+                   }">{{getMobileObj.rating}}</span>
+                </h1>
+                
+                   <h2 class="text-muted">Features :  </h2>
+                      <ul class="list-group" >
+                        <li   class="list-group-item" *ngFor="let f of getMobileObj.features">
+                          {{f}}
+                        </li>
+                      </ul>
+             </div>
+             <div class=" col-sm-12  col-md-2"> 
+              <h4>
+               <strong>{{getMobileObj.price |currency : 'INR'}}  <span class="text-success">15% off</span></strong> 
+                <div>
+                <del> ({{getMobileObj.price + getMobileObj.price * 15 | currency : 'INR'}})</del>
+                </div>
+              </h4>
+              <strong class="text-danger" *ngIf="getMobileObj.noOfItems < 10">
+                only {{getMobileObj.noOfItems}} left !!!
+              </strong>
+           <div class="d-flex justify-content-sm-space-evenly justify-content-between  mt-5">
+              <button mat-raised-button color="accent" > <mat-icon (click)="onAdd()">add_shopping_cart</mat-icon></button>
+              <button mat-raised-button color="warn" (click)="ondelete()"><mat-icon>remove_shopping_cart</mat-icon></button>
+           </div>
+             <p class="mt-3 p-2">My Shopping Bag : {{addToCart}} </p>
+             </div>
+            </div>
+            
+    </div>
+       <p class="isAvailable" *ngIf="!getMobileObj.isAvailable">Product is not Available !!!</p>
+    </div>
+         </div>
+
+</div>
