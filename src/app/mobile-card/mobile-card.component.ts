@@ -13,6 +13,10 @@ addToCart:number=0;
 
   ngOnInit(): void {
   }
+
+  trackById(index: number, trackById:IMobile){
+        return trackById
+  }
 onAdd(){
   if(this.addToCart<10){
     this.addToCart ++

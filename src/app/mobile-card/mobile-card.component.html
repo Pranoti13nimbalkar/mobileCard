@@ -31,7 +31,7 @@
                 
                    <h2 class="text-muted">Features :  </h2>
                       <ul class="list-group" >
-                        <li   class="list-group-item" *ngFor="let f of getMobileObj.features">
+                        <li   class="list-group-item" *ngFor="let f of getMobileObj.features ; trackById: trackById">
                           {{f}}
                         </li>
                       </ul>
